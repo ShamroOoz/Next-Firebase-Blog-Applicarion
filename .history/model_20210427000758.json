@@ -1,0 +1,6 @@
+Database Structure
+
+--> users/{uid} Public user profile
+--> usernames/{username} Username uniqueness tracking
+--> users/{uid}/posts/{slug} User can have many posts
+--> users/{uid}/posts/{slug}/hearts/{uid} many-to-many relationship between users and posts via hearts

@@ -1,0 +1,22 @@
+// Database Structure
+
+--> users/{uid}  // Public user profile
+--> usernames/{username} //Username uniqueness tracking
+--> users/{uid}/posts/{slug} //User can have many posts
+--> users/{uid}/posts/{slug}/hearts/{uid} //many-to-many relationship between users and posts via hearts
+
+//Example post document with all expected fields.
+
+// users/{uid}/posts/{slug}
+
+{
+    title: 'Hello World,
+    slug: 'hello-world',
+    uid: 'userID',
+    username: 'jeffd23',
+    published: false,
+    content: '# hello world!',
+    createdAt: TimeStamp,
+    updatedAt: TimeStamp,
+    heartCount: 0,
+}

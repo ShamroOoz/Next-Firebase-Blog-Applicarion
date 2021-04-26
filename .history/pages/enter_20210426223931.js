@@ -1,15 +1,15 @@
-import { useAuth } from "@/context/AuthContext";
-import UsernameForm from "@/components/UsernameForm";
+import { auth, googleAuthProvider } from "@/lib/firebase";
 
 export default function enter() {
-  const { user, username, signOut } = useAuth();
+  const user = null;
+  const username = null;
   return (
     <main>
       {user ? (
         !username ? (
           <UsernameForm />
         ) : (
-          <button onClick={signOut}>Sign Out</button>
+          <SignOutButton />
         )
       ) : (
         <SignInButton />
@@ -20,10 +20,22 @@ export default function enter() {
 
 // Sign in with Google button
 function SignInButton() {
-  const { signInWithGoogle, username } = useAuth();
+  const signInWithGoogle = async () => {
+    await auth.signInWithPopup(googleAuthProvider);
+  };
+
   return (
     <button className="btn-google" onClick={signInWithGoogle}>
       <img src={"/google.png"} /> Sign in with Google
     </button>
   );
+}
+
+// Sign out button
+function SignOutButton() {
+  return <button onClick={() => auth.signOut()}>Sign Out</button>;
+}
+
+function UsernameForm() {
+  return null;
 }

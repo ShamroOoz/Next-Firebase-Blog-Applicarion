@@ -6,9 +6,7 @@ export default function Home() {
     <main>
       <div>Next firebase Blog</div>
       <Loader show />
-      <button onClick={() => toast.success("Successfully created!")}>
-        Make me a toast
-      </button>
+      <button onClick={toast}>Make me a toast</button>
     </main>
   );
 }

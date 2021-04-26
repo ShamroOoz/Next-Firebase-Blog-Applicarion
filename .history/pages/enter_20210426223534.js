@@ -1,0 +1,16 @@
+export default function enter() {
+  return (
+    <main>
+      this is the MAIN page
+      <p>THIS IS THE PARAdGRAPGH</p>
+      <Link
+        href={{
+          pathname: "/[username]/[slug]",
+          query: { username: "shamroz", slug: "123344" },
+        }}
+      >
+        <a>MOVE TO</a>
+      </Link>
+    </main>
+  );
+}
