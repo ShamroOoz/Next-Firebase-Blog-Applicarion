@@ -1,6 +1,5 @@
 import AuthCheck from "@/components/AuthCheck";
 import PostFeed from "@/components/PostFeed";
-import Metatags from "@/components/Metatags";
 import CreateNewPost from "@/components/CreateNewPost";
 import { firestore, auth } from "@/lib/firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
@@ -9,7 +8,6 @@ export default function AdminPostsPage(props) {
   return (
     <main>
       <AuthCheck>
-        <Metatags title="Admin panel" />
         <PostList />
         <CreateNewPost />
       </AuthCheck>

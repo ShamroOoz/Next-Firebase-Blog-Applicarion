@@ -1,15 +1,7 @@
 import { getUserWithUsername, postToJSON } from "@/lib/firebase";
 import UserProfile from "@/components/UserProfile";
-import PostFeed from "@/components/PostFeed";
-import Metatags from "@/components/Metatags";
 export default function UserProfilePage({ user, posts }) {
-  return (
-    <main>
-      <Metatags title={user.displayName} />
-      <UserProfile user={user} />
-      <PostFeed posts={posts} />
-    </main>
-  );
+  return <UserProfile user={user} />;
 }
 
 export async function getServerSideProps({ query }) {
@@ -23,12 +15,12 @@ export async function getServerSideProps({ query }) {
 
   if (userDoc) {
     user = userDoc.data();
-    const postsQuery = userDoc.ref
-      .collection("posts")
-      .where("published", "==", true)
-      .orderBy("createdAt", "desc")
-      .limit(5);
-    posts = (await postsQuery.get()).docs.map(postToJSON);
+    // const postsQuery = userDoc.ref
+    //   .collection("posts")
+    //   .where("published", "==", true)
+    //   .orderBy("createdAt", "desc")
+    //   .limit(5);
+    // posts = (await postsQuery.get()).docs.map(postToJSON);
   }
 
   return {

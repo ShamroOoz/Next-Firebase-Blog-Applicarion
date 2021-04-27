@@ -1,15 +1,19 @@
+import styles from "@/styles/Admin.module.css";
 import AuthCheck from "@/components/AuthCheck";
 import PostFeed from "@/components/PostFeed";
-import Metatags from "@/components/Metatags";
-import CreateNewPost from "@/components/CreateNewPost";
-import { firestore, auth } from "@/lib/firebase";
+import { firestore, auth, serverTimestamp } from "@/lib/firebase";
+import { useAuth } from "@/context/AuthContext";
+import { useState } from "react";
+import { useRouter } from "next/router";
+
 import { useCollection } from "react-firebase-hooks/firestore";
+import kebabCase from "lodash.kebabcase";
+import toast from "react-hot-toast";
 
 export default function AdminPostsPage(props) {
   return (
     <main>
       <AuthCheck>
-        <Metatags title="Admin panel" />
         <PostList />
         <CreateNewPost />
       </AuthCheck>

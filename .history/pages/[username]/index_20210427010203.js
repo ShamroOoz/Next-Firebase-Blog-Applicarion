@@ -5,7 +5,7 @@ import Metatags from "@/components/Metatags";
 export default function UserProfilePage({ user, posts }) {
   return (
     <main>
-      <Metatags title={user.displayName} />
+      <Metatags />
       <UserProfile user={user} />
       <PostFeed posts={posts} />
     </main>

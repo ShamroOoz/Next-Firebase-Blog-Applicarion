@@ -9,7 +9,7 @@ export default function AdminPostsPage(props) {
   return (
     <main>
       <AuthCheck>
-        <Metatags title="Admin panel" />
+        <Metatags />
         <PostList />
         <CreateNewPost />
       </AuthCheck>

@@ -65,10 +65,6 @@ code {
   overflow-x: scroll;
 }
 
-.upercase {
-  text-transform: uppercase;
-}
-
 /* Navbar */
 
 .navbar {
@@ -152,7 +148,7 @@ button.btn-red {
   color: white;
 }
 
-.btn-green {
+button .btn-green {
   background-color: var(--color-green);
   color: white;
 }

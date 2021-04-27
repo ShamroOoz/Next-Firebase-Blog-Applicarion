@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import Metatags from "@/components/Metatags";
+
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import { useForm } from "react-hook-form";
 import ReactMarkdown from "react-markdown";
@@ -14,7 +14,6 @@ import ReactMarkdown from "react-markdown";
 export default function AdminPostEdit(props) {
   return (
     <AuthCheck>
-      <Metatags title="Admin panel" />
       <PostManager />
     </AuthCheck>
   );
@@ -38,7 +37,7 @@ function PostManager() {
       {post && (
         <>
           <section>
-            <h1 className="upercase">{post.title}</h1>
+            <h1>{post.title}</h1>
             <p>ID: {post.slug}</p>
 
             <PostForm
@@ -65,12 +64,16 @@ function PostManager() {
 
 function PostForm({ defaultValues, postRef, preview }) {
   //
-  const { register, handleSubmit, reset, watch, formState } = useForm({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors, isValid, isDirty },
+  } = useForm({
     defaultValues,
     mode: "onChange",
   });
-
-  const { isValid, isDirty, errors } = formState;
 
   const updatePost = async ({ content, published }) => {
     await postRef.update({
@@ -83,6 +86,7 @@ function PostForm({ defaultValues, postRef, preview }) {
 
     toast.success("Post updated successfully!");
   };
+
   return (
     <form onSubmit={handleSubmit(updatePost)}>
       {preview && (
@@ -95,16 +99,15 @@ function PostForm({ defaultValues, postRef, preview }) {
         <textarea
           name="content"
           {...register("content", {
-            required: { value: true, message: "content is required" },
-            maxLength: { value: 20000, message: "content is too long" },
-            minLength: { value: 10, message: "content is too short" },
+            required: true,
+            maxLength: 20000,
+            minLength: 10,
           })}
         ></textarea>
 
         {errors.content && (
           <p className="text-danger">{errors.content.message}</p>
         )}
-
         <fieldset>
           <input
             className={styles.checkbox}
@@ -115,11 +118,7 @@ function PostForm({ defaultValues, postRef, preview }) {
           <label>Published</label>
         </fieldset>
 
-        <button
-          type="submit"
-          disabled={!isDirty || !isValid}
-          className={`btn-green`}
-        >
+        <button type="submit" disabled={!isDirty || !isValid}>
           Save Changes
         </button>
       </div>

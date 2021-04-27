@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import Metatags from "@/components/Metatags";
+
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import { useForm } from "react-hook-form";
 import ReactMarkdown from "react-markdown";
@@ -14,7 +14,6 @@ import ReactMarkdown from "react-markdown";
 export default function AdminPostEdit(props) {
   return (
     <AuthCheck>
-      <Metatags title="Admin panel" />
       <PostManager />
     </AuthCheck>
   );
@@ -38,7 +37,7 @@ function PostManager() {
       {post && (
         <>
           <section>
-            <h1 className="upercase">{post.title}</h1>
+            <h1>{post.title}</h1>
             <p>ID: {post.slug}</p>
 
             <PostForm
