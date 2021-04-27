@@ -14,6 +14,7 @@ export default function Home({ data }) {
   const getMorePosts = async () => {
     const last = posts[posts.length - 1];
 
+    console.log(last);
     const cursor =
       typeof last.createdAt === "number"
         ? fromMillis(last.createdAt)
@@ -27,9 +28,7 @@ export default function Home({ data }) {
       .limit(process.env.NEXT_PUBLIC_LIMIT);
 
     const newPosts = (await query.get()).docs.map((doc) => doc.data());
-    if (newPosts.length == 0) {
-      setPostsEnd(true);
-    }
+
     setPosts(posts.concat(newPosts));
     setLoading(false);
   };

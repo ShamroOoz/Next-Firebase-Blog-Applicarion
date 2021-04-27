@@ -6,14 +6,12 @@ import { firestore, fromMillis, postToJSON } from "@/lib/firebase";
 import { useState } from "react";
 
 export default function Home({ data }) {
-  //
   const [posts, setPosts] = useState(data);
   const [loading, setLoading] = useState(false);
   const [postsEnd, setPostsEnd] = useState(false);
 
   const getMorePosts = async () => {
     const last = posts[posts.length - 1];
-
     const cursor =
       typeof last.createdAt === "number"
         ? fromMillis(last.createdAt)
@@ -27,9 +25,7 @@ export default function Home({ data }) {
       .limit(process.env.NEXT_PUBLIC_LIMIT);
 
     const newPosts = (await query.get()).docs.map((doc) => doc.data());
-    if (newPosts.length == 0) {
-      setPostsEnd(true);
-    }
+
     setPosts(posts.concat(newPosts));
     setLoading(false);
   };

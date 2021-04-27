@@ -18,7 +18,7 @@ export default function Home({ data }) {
       typeof last.createdAt === "number"
         ? fromMillis(last.createdAt)
         : last.createdAt;
-
+    console.log(cursor);
     const query = firestore
       .collectionGroup("posts")
       .where("published", "==", true)
@@ -27,9 +27,7 @@ export default function Home({ data }) {
       .limit(process.env.NEXT_PUBLIC_LIMIT);
 
     const newPosts = (await query.get()).docs.map((doc) => doc.data());
-    if (newPosts.length == 0) {
-      setPostsEnd(true);
-    }
+
     setPosts(posts.concat(newPosts));
     setLoading(false);
   };

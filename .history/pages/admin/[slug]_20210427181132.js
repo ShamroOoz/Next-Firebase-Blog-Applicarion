@@ -2,6 +2,7 @@ import styles from "@/styles/Admin.module.css";
 import AuthCheck from "@/components/AuthCheck";
 import ImageUploader from "@/components/ImageUploader";
 import { firestore, auth, serverTimestamp } from "@/lib/firebase";
+
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -56,7 +57,6 @@ function PostManager() {
             <Link href={`/${post.username}/${post.slug}`}>
               <button className="btn-blue">Live view</button>
             </Link>
-            <DeletePostButton postRef={postRef} />
           </aside>
         </>
       )}
@@ -126,24 +126,5 @@ function PostForm({ defaultValues, postRef, preview }) {
         </button>
       </div>
     </form>
-  );
-}
-
-function DeletePostButton({ postRef }) {
-  const router = useRouter();
-
-  const deletePost = async () => {
-    const doIt = confirm("are you sure!");
-    if (doIt) {
-      await postRef.delete();
-      router.push("/admin");
-      toast("Post  deletd... ", { icon: "🗑️" });
-    }
-  };
-
-  return (
-    <button className="btn-red" onClick={deletePost}>
-      Delete
-    </button>
   );
 }

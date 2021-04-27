@@ -25,15 +25,15 @@ export default function Post({ post, path }) {
           <strong>{postdata.heartCount || 0} 🤍</strong>
         </p>
 
-        <AuthCheck
+        {/* <AuthCheck
           fallback={
             <Link href="/enter">
               <button>💗 Sign Up</button>
             </Link>
           }
         >
-          <HeartButton postRef={postRef} />
-        </AuthCheck>
+         <HeartButton postRef={postRef} /> 
+        </AuthCheck> */}
 
         {currentUser?.uid === post.uid && (
           <Link href={`/admin/${post.slug}`}>

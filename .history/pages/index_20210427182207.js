@@ -27,9 +27,7 @@ export default function Home({ data }) {
       .limit(process.env.NEXT_PUBLIC_LIMIT);
 
     const newPosts = (await query.get()).docs.map((doc) => doc.data());
-    if (newPosts.length == 0) {
-      setPostsEnd(true);
-    }
+    console.log(newPosts);
     setPosts(posts.concat(newPosts));
     setLoading(false);
   };

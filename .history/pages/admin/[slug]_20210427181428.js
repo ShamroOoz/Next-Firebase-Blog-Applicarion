@@ -2,6 +2,7 @@ import styles from "@/styles/Admin.module.css";
 import AuthCheck from "@/components/AuthCheck";
 import ImageUploader from "@/components/ImageUploader";
 import { firestore, auth, serverTimestamp } from "@/lib/firebase";
+
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -137,7 +138,7 @@ function DeletePostButton({ postRef }) {
     if (doIt) {
       await postRef.delete();
       router.push("/admin");
-      toast("Post  deletd... ", { icon: "🗑️" });
+      toast("post annihilated ", { icon: "🗑️" });
     }
   };
 

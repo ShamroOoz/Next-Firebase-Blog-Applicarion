@@ -3,9 +3,6 @@ import PostContent from "@/components/PostContent";
 import { firestore, getUserWithUsername, postToJSON } from "@/lib/firebase";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import AuthCheck from "@/components/AuthCheck";
-import HeartButton from "@/components/HeartButton";
-import { useAuth } from "@/context/AuthContext";
-import Link from "next/link";
 
 ///
 export default function Post({ post, path }) {
@@ -13,7 +10,7 @@ export default function Post({ post, path }) {
   const postRef = firestore.doc(path);
   const [realtimePost] = useDocumentData(postRef);
   const postdata = realtimePost || post;
-  const { user: currentUser } = useAuth();
+  const { user: currentUser } = useContext(UserContext);
 
   return (
     <main className={styles.container}>
