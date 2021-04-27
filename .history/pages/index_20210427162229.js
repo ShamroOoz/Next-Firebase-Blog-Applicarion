@@ -21,7 +21,7 @@ export default function Home({ data }) {
       .where("published", "==", true)
       .orderBy("createdAt", "desc")
       .startAfter(cursor)
-      .limit(process.env.NEXT_PUBLIC_LIMIT);
+      .limit(process.env.PER_PAGE_LIMIT);
 
     const newPosts = (await query.get()).docs.map((doc) => doc.data());
 
@@ -49,7 +49,7 @@ export async function getServerSideProps(context) {
     .collectionGroup("posts")
     .where("published", "==", true)
     .orderBy("createdAt", "desc")
-    .limit(process.env.NEXT_PUBLIC_LIMIT);
+    .limit(process.env.PER_PAGE_LIMIT);
 
   const data = (await postsQuery.get()).docs.map(postToJSON);
 

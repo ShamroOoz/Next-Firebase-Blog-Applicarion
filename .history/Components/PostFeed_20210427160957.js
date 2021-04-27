@@ -22,7 +22,7 @@ function PostItem({ post, admin = false }) {
       </Link>
 
       <Link href={`/${post.username}/${post.slug}`}>
-        <h2 className="upercase">
+        <h2 className="uppercase">
           <a>{post.title}</a>
         </h2>
       </Link>

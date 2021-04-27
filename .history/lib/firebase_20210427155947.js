@@ -4,13 +4,13 @@ import "firebase/firestore";
 import "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_APIKEY,
-  authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
-  databaseURL: process.env.NEXT_PUBLIC_DATABASEURL,
-  projectId: process.env.NEXT_PUBLIC_PROJECTID,
-  storageBucket: process.env.NEXT_PUBLIC_STORAGEBUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_MESSADINGSENDERID,
-  appId: process.env.NEXT_PUBLIC_APPID,
+  apiKey: "AIzaSyA5mg4r85KGYGYgASG5d9c2DxHzUGjTaDE",
+  authDomain: "auth-test-248a5.firebaseapp.com",
+  databaseURL: "https://auth-test-248a5-default-rtdb.firebaseio.com",
+  projectId: "auth-test-248a5",
+  storageBucket: "auth-test-248a5.appspot.com",
+  messagingSenderId: "579704178848",
+  appId: "1:579704178848:web:7ca76c84ac9a5392ade1c5",
 };
 
 if (!firebase.apps.length) {

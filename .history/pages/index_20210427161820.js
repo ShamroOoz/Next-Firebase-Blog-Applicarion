@@ -4,6 +4,9 @@ import { firestore, fromMillis, postToJSON } from "@/lib/firebase";
 
 import { useState } from "react";
 
+// Max post to query per page
+const LIMIT = 2;
+
 export default function Home({ data }) {
   const [posts, setPosts] = useState(data);
   const [loading, setLoading] = useState(false);
@@ -11,6 +14,7 @@ export default function Home({ data }) {
 
   const getMorePosts = async () => {
     const last = posts[posts.length - 1];
+    console.log(last);
     const cursor =
       typeof last.createdAt === "number"
         ? fromMillis(last.createdAt)
@@ -21,7 +25,7 @@ export default function Home({ data }) {
       .where("published", "==", true)
       .orderBy("createdAt", "desc")
       .startAfter(cursor)
-      .limit(process.env.NEXT_PUBLIC_LIMIT);
+      .limit(LIMIT);
 
     const newPosts = (await query.get()).docs.map((doc) => doc.data());
 
@@ -49,7 +53,7 @@ export async function getServerSideProps(context) {
     .collectionGroup("posts")
     .where("published", "==", true)
     .orderBy("createdAt", "desc")
-    .limit(process.env.NEXT_PUBLIC_LIMIT);
+    .limit(LIMIT);
 
   const data = (await postsQuery.get()).docs.map(postToJSON);
 
