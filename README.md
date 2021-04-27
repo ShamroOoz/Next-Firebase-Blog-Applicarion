@@ -22,6 +22,11 @@ yarn dev
 
 ## Deployment
 
+<<<<<<< HEAD
 ```
 App live  at  Vercel [Launch](https://next-firebase-blog-applicarion.vercel.app/)
 ```
+=======
+App live  at  Vercel [App](https://next-firebase-blog-applicarion.vercel.app)
+
+>>>>>>> e9714b5273bf964e8d05a6d6c80789ef37f6ed28
