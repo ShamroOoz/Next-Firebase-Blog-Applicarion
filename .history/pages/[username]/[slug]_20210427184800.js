@@ -18,7 +18,7 @@ export default function Post({ post, path }) {
 
   return (
     <main className={styles.container}>
-      <Metatags title={post.title} />
+      <Metatags title={post.title.uppercase()} />
       <section>
         <PostContent post={post} />
       </section>

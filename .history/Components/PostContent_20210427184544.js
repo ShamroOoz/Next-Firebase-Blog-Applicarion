@@ -10,7 +10,7 @@ export default function PostContent({ post }) {
 
   return (
     <div className="card">
-      <h1 className="upercase">{post?.title}</h1>
+      <h1 className="upcase">{post?.title}</h1>
       <span className="text-sm">
         Written by{" "}
         <Link href={`/${post.username}/`}>
